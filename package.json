@@ -1,0 +1,29 @@
+{
+  "name": "newscaster",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "v0idp",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [
+    "space",
+    "station",
+    "byond",
+    "discord",
+    "bot"
+  ],
+  "license": "GPLv3",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "discord.js-commando": "github:discordjs/Commando",
+    "sqlite": "^3.0.0"
+  }
+}
