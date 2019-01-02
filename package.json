@@ -2,13 +2,13 @@
   "name": "newscaster",
   "version": "1.0.0",
   "main": "src/index.js",
-  "author": "v0idp",
+  "author": "void* <voidp@protonmail.com> (https://github.com/v0idp)",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/v0idp/Newscaster"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/v0idp/Newscaster/issues"
   },
   "keywords": [
     "space",
@@ -17,8 +17,9 @@
     "discord",
     "bot"
   ],
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "scripts": {
+    "prestart": "npm install",
     "start": "node src/index.js"
   },
   "dependencies": {
