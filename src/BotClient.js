@@ -75,8 +75,22 @@ class Bot {
     };
   }
 
+  sendMessage(guild, channel, message) {
+    this.client.guilds.get(guild).channels.get(channel).send(message);
+  }
+
   sendEmbed(guild, channel, embed) {
     this.client.guilds.get(guild).channels.get(channel).send(embed);
+  }
+
+  removeRole(guild, role) {
+    this.client.guilds.get(guild).members.fetch().then((mCollect) => {
+      mCollect.forEach((element) => {
+        if(element.roles.has(role)) {
+          element.roles.remove(role).catch(console.error);
+        }
+      });
+    }).catch(console.error);
   }
 
   init() {
@@ -104,7 +118,7 @@ class Bot {
       // register default groups and commands
       this.client.registry
         .registerGroups([
-          ['round', 'Commands for the current round']
+          ['everyone', 'Commands for everyone']
         ])
         .registerDefaultGroups()
         .registerDefaultTypes()

@@ -18,13 +18,27 @@ class ByondServer {
         this.app.get('/', async (req, res) => {
             if (!req.query) return;
             let map = this.parseData(req.query);
+            let command = map.get('command');
 
-            if(map.get('command') == 'startup') {
+            if (command == 'startup') {
                 let startupEmbed = new Discord.MessageEmbed()
-                    .setTitle('Round Startup')
+                    .setTitle('Server Startup')
                     .setTimestamp(new Date())
+                    .setColor(3447003)
                     .setDescription(`Server starting up on ${map.get('name')}.\nConnect to: ${map.get('connect')}`);
                 this.bot.sendEmbed(config.notifications.guild, config.notifications.channel, startupEmbed);
+                this.bot.sendMessage(config.notifications.guild, config.notifications.channel, `<@&${config.notifications.role}>`);
+                setTimeout(() => {
+                    this.bot.removeRole(config.notifications.guild, config.notifications.role);
+                }, 5000);
+            }
+            else if (command == 'roundend') {
+                let roundendEmbed = new Discord.MessageEmbed()
+                    .setTitle('Round End')
+                    .setTimestamp(new Date())
+                    .setColor(3447003)
+                    .setDescription(`The Round has ended. Server will reboot now...`);
+                this.bot.sendEmbed(config.notifications.guild, config.notifications.channel, roundendEmbed);
             }
         });
     

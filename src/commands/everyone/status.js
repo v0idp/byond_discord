@@ -1,15 +1,13 @@
 const Discord = require('discord.js');
 const commando = require('discord.js-commando');
 const ByondTopic = require('../../ByondTopic.js');
-const configName = process.env.CONFIG_NAME || 'config.json';
-const config = require('../../' + configName);
 
 module.exports = class statusCommands extends commando.Command {
 	constructor (client) {
 		super(client, {
 			'name': 'status',
 			'memberName': 'status',
-			'group': 'round',
+			'group': 'everyone',
 			'description': 'get the status of the current round',
 			'examples': ['status'],
 			'guildOnly': true
