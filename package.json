@@ -25,6 +25,7 @@
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
     "discord.js-commando": "github:discordjs/Commando",
+    "express": "^4.16.4",
     "sqlite": "^3.0.0"
   }
 }

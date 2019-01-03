@@ -75,9 +75,14 @@ class Bot {
     };
   }
 
+  sendEmbed(guild, channel, embed) {
+    this.client.guilds.get(guild).channels.get(channel).send(embed);
+  }
+
   init() {
-    // register our events
-    this.client
+    return new Promise((resolve, reject) => {
+      // register our events
+      this.client
       .on('ready', this.onReady())
       .on('commandPrefixChange', this.onCommandPrefixChange())
       .on('error', console.error)
@@ -91,29 +96,30 @@ class Bot {
       .on('groupStatusChange', this.onGroupStatusChange())
       .on('message', this.onMessage());
 
-    // set provider sqlite3 so we can save our settings
-    this.client.setProvider(
-      sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new Commando.SQLiteProvider(db))
-    ).catch(console.error);
+      // set provider to sqlite so we can save our settings
+      this.client.setProvider(
+        sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new Commando.SQLiteProvider(db))
+      ).catch(console.error);
 
-    // register default groups and commands
-    this.client.registry
-      .registerGroups([
-        ['round', 'Commands for the current round']
-      ])
-      .registerDefaultGroups()
-      .registerDefaultTypes()
-      .registerDefaultCommands({
-        'help': true,
-        'prefix': true,
-        'ping': true,
-        'eval_': false,
-        'commandState': true
-      })
-      .registerCommandsIn(path.join(__dirname, 'commands'));
+      // register default groups and commands
+      this.client.registry
+        .registerGroups([
+          ['round', 'Commands for the current round']
+        ])
+        .registerDefaultGroups()
+        .registerDefaultTypes()
+        .registerDefaultCommands({
+          'help': true,
+          'prefix': true,
+          'ping': true,
+          'eval_': false,
+          'commandState': true
+        })
+        .registerCommandsIn(path.join(__dirname, 'commands'));
 
-    // login with client and bot token
-    return this.client.login(this.token);
+      // login with client and bot token
+      this.client.login(this.token).then(resolve(this)).catch((reason) => {reject(reason)});
+    });
   }
 
   deinit() {

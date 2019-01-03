@@ -52,3 +52,7 @@ world/Topic(T, addr, master, key)
 				s["adminrank[i - 1]"] = A[2]
 
 		return list2params(s)
+
+// If you want to send information to your discord bot without having to send commands from the bot you
+// can alternatively trigger the discord bot to do what you want with world.Export()
+// example: world.Export("http://127.0.0.1:5001/?command=round_start&testkey=testvalue")

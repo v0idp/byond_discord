@@ -3,17 +3,17 @@ const configName = process.env.CONFIG_NAME || 'config.json';
 const config = require('./' + configName);
 
 class ByondTopic {
-   constructor(port, address) {
+   constructor(port, host) {
       this.socket = new net.Socket();
-      this.port = port || config.byond.port;
-      this.address = address || config.byond.address;
+      this.port = port || config.byondTopic.port;
+      this.host = host || config.byondTopic.host;
       this.init();
    }
 
    init() {
       let client = this;
-      client.socket.connect(client.port, client.address, () => {
-         //console.log(`Client connected to: ${client.address}:${client.port}`);
+      client.socket.connect(client.port, client.host, () => {
+         //console.log(`Client connected to: ${client.host}:${client.port}`);
       });
 
       client.socket.on('close', () => {
@@ -32,7 +32,7 @@ class ByondTopic {
          });
 
          client.socket.on('error', (err) => {
-            reject(err);
+            reject(err.message);
          });
       });
    }

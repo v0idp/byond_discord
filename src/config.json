@@ -5,8 +5,18 @@
         "globalCommandPrefix" : "?"
     },
 
-    "byond" : {
-        "address": "127.0.0.1",
+    "notifications" : {
+        "guild" : "",
+        "channel" : ""
+    },
+
+    "byondTopic" : {
+        "host": "127.0.0.1",
         "port" : 5000
+    },
+
+    "byondServer" : {
+        "enabled" : true,
+        "port" : 5001
     }
 }
