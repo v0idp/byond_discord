@@ -19,10 +19,12 @@ class ByondServer {
             if (!req.query) return;
             let map = this.parseData(req.query);
 
-            if(map.get('command') == 'round_start') {
-                this.bot.sendEmbed(config.notifications.guild,
-                    config.notifications.channel,
-                    this.buildEmbed('Round Start', map));
+            if(map.get('command') == 'startup') {
+                let startupEmbed = new Discord.MessageEmbed()
+                    .setTitle('Round Startup')
+                    .setTimestamp(new Date())
+                    .setDescription(`Server starting up on ${map.get('name')}.\nConnect to: ${map.get('connect')}`);
+                this.bot.sendEmbed(config.notifications.guild, config.notifications.channel, startupEmbed);
             }
         });
     
