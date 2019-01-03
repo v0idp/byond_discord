@@ -5,7 +5,7 @@ const config = require('./' + configName);
 
 let start = function () {
   new BotClient(config.general.token).init().then((bot) => {
-    new ByondServer(config.byondServer.port, bot);
+    if (config.byondServer.enabled) new ByondServer(config.byondServer.port, bot);
   });
 };
 
