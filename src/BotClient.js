@@ -75,16 +75,16 @@ class Bot {
     };
   }
 
-  sendMessage(guild, channel, message) {
-    this.client.guilds.get(guild).channels.get(channel).send(message);
+  sendMessage(channel, message) {
+    this.client.guilds.first().channels.get(channel).send(message);
   }
 
-  sendEmbed(guild, channel, embed) {
-    this.client.guilds.get(guild).channels.get(channel).send(embed);
+  sendEmbed(channel, embed) {
+    this.client.guilds.first().channels.get(channel).send(embed);
   }
 
-  removeRole(guild, role) {
-    this.client.guilds.get(guild).members.fetch().then((mCollect) => {
+  removeRole(role) {
+    this.client.guilds.first().members.fetch().then((mCollect) => {
       mCollect.forEach((element) => {
         if(element.roles.has(role)) {
           element.roles.remove(role).catch(console.error);

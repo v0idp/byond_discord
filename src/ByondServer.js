@@ -20,25 +20,14 @@ class ByondServer {
             let map = this.parseData(req.query);
             let command = map.get('command');
 
-            if (command == 'startup') {
-                let startupEmbed = new Discord.MessageEmbed()
-                    .setTitle('Server Startup')
-                    .setTimestamp(new Date())
-                    .setColor(3447003)
-                    .setDescription(`Server starting up on ${map.get('name')}.\nConnect to: ${map.get('connect')}`);
-                this.bot.sendEmbed(config.notifications.guild, config.notifications.channel, startupEmbed);
-                this.bot.sendMessage(config.notifications.guild, config.notifications.channel, `<@&${config.notifications.role}>`);
-                setTimeout(() => {
-                    this.bot.removeRole(config.notifications.guild, config.notifications.role);
-                }, 5000);
+            if (command.indexOf('message') > -1) {
+                this.bot.sendMessage(map.get('channel'), map.get('message'));
             }
-            else if (command == 'roundend') {
-                let roundendEmbed = new Discord.MessageEmbed()
-                    .setTitle('Round End')
-                    .setTimestamp(new Date())
-                    .setColor(3447003)
-                    .setDescription(`The Round has ended. Server will reboot now...`);
-                this.bot.sendEmbed(config.notifications.guild, config.notifications.channel, roundendEmbed);
+            else if (command.indexOf('startup') > -1) {
+                this.bot.sendMessage(map.get('channel'), `${map.get('message')}\n${`<@&${config.notifications.role}>`}`);
+                setTimeout(() => {
+                    this.bot.removeRole(config.notifications.role);
+                }, 5000);
             }
         });
     
@@ -53,17 +42,6 @@ class ByondServer {
             map.set(key, value);
         });
         return map;
-    }
-
-    buildEmbed(title, map) {
-        let statusEmbed = new Discord.MessageEmbed()
-        .setTitle(title)
-        .setTimestamp(new Date());
-        map.forEach((value, name) => {
-            if (name != 'command')
-                statusEmbed.addField(name, value, true);
-        });
-        return statusEmbed;
     }
 }
 
