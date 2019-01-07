@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 const configName = process.env.CONFIG_NAME || 'config.json';
 const config = require('./' + configName);
 
-class ByondServer {
+class ByondImport {
     constructor(port, bot) {
-        this.port = port || config.byondServer.port;
+        this.port = port || config.byondImport.port;
         this.bot = bot;
         this.app = express();
         this.init();
@@ -31,8 +31,8 @@ class ByondServer {
             }
         });
     
-        this.app.listen(config.byondServer.port);
-        console.log(`Listening for Byond world.Export() calls on port ${config.byondServer.port}`);
+        this.app.listen(config.byondImport.port);
+        console.log(`Listening for Byond world.Export() calls on port ${config.byondImport.port}`);
     }
 
     parseData(query) {
@@ -45,4 +45,4 @@ class ByondServer {
     }
 }
 
-module.exports = ByondServer;
+module.exports = ByondImport;
