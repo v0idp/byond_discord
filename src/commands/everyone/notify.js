@@ -19,7 +19,8 @@ module.exports = class notifyCommands extends commando.Command {
             msg.member.roles.add(config.notifications.role).catch(console.error);
             return msg.reply('You will be notified when the next round starts.');
         } else {
-            return msg.reply('You already subscribed to get notified.');
+            msg.member.roles.remove(config.notifications.role).catch(console.error);
+            return msg.reply('You will not be notified anymore.');
         }
     }
 };
