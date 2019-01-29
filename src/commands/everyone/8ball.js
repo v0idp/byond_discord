@@ -1,6 +1,6 @@
 const commando = require('discord.js-commando');
 
-responses = ['Yes','Too bad','Will you turn me off if I tell you?','Absolutely',
+responses = ["Yes","Too bad","Will you turn me off if I tell you?","Absolutely",
 			"Not at all", "Nope", "It does", "No", "All the time",
 			"I don't really know", "Could be","Possibly","You're still here?",
 			"No idea", "Of course", "Would you turn me off if I tell you?",
@@ -29,6 +29,6 @@ module.exports = class eightballCommands extends commando.Command {
 	}
 
 	run (msg, args) {
-		return msg.reply(responses[Math.floor(Math.random() * responses.length - 1)]);
+		return msg.reply(responses[Math.floor(Math.random() * responses.length)]);
 	}
 };

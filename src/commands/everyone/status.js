@@ -22,7 +22,7 @@ module.exports = class statusCommands extends commando.Command {
 		.setTitle('Round Status')
 		.setTimestamp(new Date());
 		responseList.forEach((value, name) => {
-			if (name !== 'host' && name.match(/player[0-9]/g).length == 0)
+			if (name !== 'host' && !name.match(/player[0-9]/g))
 				statusEmbed.addField(name, value, true);
 		});
 		return msg.embed(statusEmbed);
