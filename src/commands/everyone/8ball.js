@@ -1,11 +1,9 @@
 const commando = require('discord.js-commando');
 
-responses = ["Yes","Too bad","Will you turn me off if I tell you?","Absolutely",
-			"Not at all", "Nope", "It does", "No", "All the time",
-			"I don't really know", "Could be","Possibly","You're still here?",
-			"No idea", "Of course", "Would you turn me off if I tell you?",
-			"Sweet!","Nah","Certainly","Yeah","Yup","I am quite confident that the answer is Yes",
-			"Perhaps", "Yeeeeaah... No.", "Indubitably" ]
+responses = ["It is certain","It is decidedly so", "Without a doubt", "Yes - definitely", "As I see it, yes",
+			"Most likely", "Outlook good", "Yes", "Signs point to yes", "Reply hazy", "Try again", "Ask again later",
+			"Better not tell you now", "Cannot predict now", "Concentrate and ask again", "Don't count on it", "My reply is no",
+			"My sources say no", "Outlook not so good", "Very doubtful"]
 
 module.exports = class eightballCommands extends commando.Command {
 	constructor (client) {

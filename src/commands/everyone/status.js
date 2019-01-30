@@ -20,7 +20,8 @@ module.exports = class statusCommands extends commando.Command {
 		let responseList = new URLSearchParams(response);
 		let statusEmbed = new Discord.MessageEmbed()
 		.setTitle('Round Status')
-		.setTimestamp(new Date());
+		.setTimestamp(new Date())
+		.setColor([128, 128, 0]);
 		responseList.forEach((value, name) => {
 			if (name !== 'host' && !name.match(/player[0-9]/g))
 				statusEmbed.addField(name, value, true);
