@@ -16,18 +16,25 @@ class ByondImport {
         this.app.use(express.urlencoded({extended: true}));
     
         this.app.get('/', async (req, res) => {
-            if (!req.query) return;
             let map = this.parseData(req.query);
             let command = map.get('command');
 
-            if (command.indexOf('message') > -1) {
-                this.bot.sendMessage(map.get('channel'), map.get('message'));
-            }
-            else if (command.indexOf('startup') > -1) {
-                this.bot.sendMessage(map.get('channel'), `${map.get('message')}\n${`<@&${config.notifications.role}>`}`);
-                setTimeout(() => {
-                    this.bot.removeRole(config.notifications.role);
-                }, 5000);
+            if (map.size > 0) {
+                if (command.indexOf('message') > -1) {
+                    this.bot.sendMessage(map.get('channel'), map.get('message'));
+                    res.json({"status": "1"});
+                }
+                else if (command.indexOf('startup') > -1) {
+                    this.bot.sendMessage(map.get('channel'), `${map.get('message')}\n${`<@&${config.notifications.role}>`}`);
+                    setTimeout(() => {
+                        this.bot.removeRole(config.notifications.role);
+                    }, 5000);
+                    res.json({"status": "1"});
+                } else {
+                    res.json({"status": "0"});
+                }
+            } else {
+                res.json({"status": "0"});
             }
         });
     
