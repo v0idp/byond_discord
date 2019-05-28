@@ -24,7 +24,7 @@ Next click on the link at the bottom and invite the bot to your server.
 
 To configure the bot open the ``config.json`` file in the ``src`` folder and enter your bot ``token``, ``globalCommandPrefix`` and ``ownerID``. The ``byondTopic`` ``host`` settings have to be the address or domain of your byond game server, ``port`` is the port of your byond game server. the ``notifications`` settings contains ``role`` ID is to ping the user when he signed up to be notified for server startup. The last one ``byondImport`` is the settings for the webserver which listens to commands and messages from the byond game server, you can enable or disable it here and set the ``port`` it listens to.
 
-Go into the Newscaster root folder and type
+Go into the Byond Discord root folder and type
 ```sh
 npm prestart
 ```
@@ -36,7 +36,7 @@ npm start
 
 ## Contributing
 
-1. Fork it (<https://github.com/v0idp/Newscaster/fork>)
+1. Fork it (<https://github.com/v0idp/byond_discord/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
