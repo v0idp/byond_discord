@@ -1,4 +1,4 @@
-# Newscaster
+# Byond Discord Bot
 
 Discord Bot which can communicate with Byond Game Servers and trigger the world/Topic() proc to execute server side code and retrieve information back from the server.
 
